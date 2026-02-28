@@ -1,7 +1,8 @@
 INCLUDEPATH += $$PWD
 DEPENDPATH += $$PWD
 
-QT += core gui
+QT += core gui core-private
+DEFINES += QT_BUILD_XLSX_LIB
 !build_xlsx_lib:DEFINES += XLSX_NO_LIB
 
 HEADERS += $$PWD/xlsxdocpropscore_p.h \
@@ -79,4 +80,5 @@ SOURCES += $$PWD/xlsxdocpropscore.cpp \
     $$PWD/xlsxabstractooxmlfile.cpp \
     $$PWD/xlsxchart.cpp \
     $$PWD/xlsxsimpleooxmlfile.cpp \
-    $$PWD/xlsxcellformula.cpp
+    $$PWD/xlsxcellformula.cpp \
+    $$PWD/xlsxconditionalformatting.cpp

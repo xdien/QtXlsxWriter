@@ -13,6 +13,7 @@ include(qtxlsx.pri)
 #DEFINES += XLSX_TEST
 
 Q_XLSX_HEADERS = \
+    xlsxabstractooxmlfile.h \
     xlsxabstractsheet.h \
     xlsxcell.h \
     xlsxcellformula.h \
@@ -20,6 +21,7 @@ Q_XLSX_HEADERS = \
     xlsxcellreference.h \
     xlsxchart.h \
     xlsxchartsheet.h \
+    xlsxconditionalformatting.h \
     xlsxdatavalidation.h \
     xlsxdocument.h \
     xlsxformat.h \

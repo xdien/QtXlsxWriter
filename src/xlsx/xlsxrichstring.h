@@ -25,49 +25,63 @@
 #ifndef XLSXRICHSTRING_H
 #define XLSXRICHSTRING_H
 
-#include "xlsxglobal.h"
 #include "xlsxformat.h"
-#include <QVariant>
-#include <QStringList>
+#include "xlsxglobal.h"
 #include <QSharedDataPointer>
+#include <QStringList>
+#include <QVariant>
 
 QT_BEGIN_NAMESPACE_XLSX
 class RichStringPrivate;
 class RichString;
 // qHash is a friend, but we can't use default arguments for friends (§8.3.6.4)
+#if QT_VERSION >= 0x060000
+Q_XLSX_EXPORT size_t qHash(const RichString &rs,
+                           size_t seed = 0) Q_DECL_NOTHROW;
+#else
 Q_XLSX_EXPORT uint qHash(const RichString &rs, uint seed = 0) Q_DECL_NOTHROW;
+#endif
 
-class Q_XLSX_EXPORT RichString
-{
+class Q_XLSX_EXPORT RichString {
 public:
-    RichString();
-    explicit RichString(const QString text);
-    RichString(const RichString &other);
-    ~RichString();
+  RichString();
+  explicit RichString(const QString text);
+  RichString(const RichString &other);
+  ~RichString();
 
-    bool isRichString() const;
-    bool isNull() const;
-    bool isEmtpy() const;
-    QString toPlainString() const;
-    QString toHtml() const;
-    void setHtml(const QString &text);
+  bool isRichString() const;
+  bool isNull() const;
+  bool isEmtpy() const;
+  QString toPlainString() const;
+  QString toHtml() const;
+  void setHtml(const QString &text);
 
-    int fragmentCount() const;
-    void addFragment(const QString &text, const Format &format);
-    QString fragmentText(int index) const;
-    Format fragmentFormat(int index) const;
+  int fragmentCount() const;
+  void addFragment(const QString &text, const Format &format);
+  QString fragmentText(int index) const;
+  Format fragmentFormat(int index) const;
 
-    operator QVariant() const;
+  operator QVariant() const;
 
-    RichString &operator=(const RichString &other);
+  RichString &operator=(const RichString &other);
+
 private:
-    friend Q_XLSX_EXPORT uint qHash(const RichString &rs, uint seed) Q_DECL_NOTHROW;
-    friend Q_XLSX_EXPORT bool operator==(const RichString &rs1, const RichString &rs2);
-    friend Q_XLSX_EXPORT bool operator!=(const RichString &rs1, const RichString &rs2);
-    friend Q_XLSX_EXPORT bool operator<(const RichString &rs1, const RichString &rs2);
-    friend Q_XLSX_EXPORT QDebug operator<<(QDebug dbg, const RichString &rs);
+#if QT_VERSION >= 0x060000
+  friend Q_XLSX_EXPORT size_t qHash(const RichString &rs,
+                                    size_t seed) Q_DECL_NOTHROW;
+#else
+  friend Q_XLSX_EXPORT uint qHash(const RichString &rs,
+                                  uint seed) Q_DECL_NOTHROW;
+#endif
+  friend Q_XLSX_EXPORT bool operator==(const RichString &rs1,
+                                       const RichString &rs2);
+  friend Q_XLSX_EXPORT bool operator!=(const RichString &rs1,
+                                       const RichString &rs2);
+  friend Q_XLSX_EXPORT bool operator<(const RichString &rs1,
+                                      const RichString &rs2);
+  friend Q_XLSX_EXPORT QDebug operator<<(QDebug dbg, const RichString &rs);
 
-    QSharedDataPointer<RichStringPrivate> d;
+  QSharedDataPointer<RichStringPrivate> d;
 };
 
 Q_XLSX_EXPORT bool operator==(const RichString &rs1, const RichString &rs2);
