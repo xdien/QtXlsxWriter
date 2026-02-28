@@ -1,7 +1,7 @@
 INCLUDEPATH += $$PWD
 DEPENDPATH += $$PWD
 
-QT += core gui core-private
+QT += core gui core-private gui-private
 DEFINES += QT_BUILD_XLSX_LIB
 !build_xlsx_lib:DEFINES += XLSX_NO_LIB
 

@@ -43,3 +43,6 @@ lib/*
 
 *.zip
 *.xlsx
+src/xlsx/**.Debug
+src/xlsx/**.Release
+.qmake.stash
