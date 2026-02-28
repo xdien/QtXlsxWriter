@@ -24,11 +24,14 @@
 ****************************************************************************/
 #include "xlsxrichstring.h"
 #include "xlsxrichstring_p.h"
+#include "xlsxformat.h"
 #include "xlsxformat_p.h"
-#include <QDebug>
+#include "xlsxutility_p.h"
+// Explicit includes needed when not using Qt gui-private module
 #include <QTextDocument>
+#include <QTextBlock>
 #include <QTextFragment>
-
+#include <QDebug>
 QT_BEGIN_NAMESPACE_XLSX
 
 RichStringPrivate::RichStringPrivate()
@@ -130,7 +133,7 @@ bool RichString::isNull() const
  */
 bool RichString::isEmtpy() const
 {
-    foreach (const QString str, d->fragmentTexts) {
+    for (const QString &str : d->fragmentTexts) {
         if (!str.isEmpty())
             return false;
     }
@@ -327,7 +330,7 @@ bool operator !=(const QString &rs1, const RichString &rs2)
     return rs2 != rs1;
 }
 
-uint qHash(const RichString &rs, uint seed) Q_DECL_NOTHROW
+size_t qHash(const RichString &rs, size_t seed) Q_DECL_NOTHROW
 {
     return qHash(rs.d->idKey(), seed);
 }
@@ -338,6 +341,6 @@ QDebug operator<<(QDebug dbg, const RichString &rs)
     dbg.nospace() << "QXlsx::RichString(" << rs.d->fragmentTexts << ")";
     return dbg.space();
 }
-#endif
 
+#endif
 QT_END_NAMESPACE_XLSX

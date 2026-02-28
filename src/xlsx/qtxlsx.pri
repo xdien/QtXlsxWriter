@@ -1,7 +1,7 @@
 INCLUDEPATH += $$PWD
 DEPENDPATH += $$PWD
 
-QT += core gui gui-private
+QT += core gui
 !build_xlsx_lib:DEFINES += XLSX_NO_LIB
 
 HEADERS += $$PWD/xlsxdocpropscore_p.h \
@@ -72,7 +72,6 @@ SOURCES += $$PWD/xlsxdocpropscore.cpp \
     $$PWD/xlsxcellreference.cpp \
     $$PWD/xlsxcellrange.cpp \
     $$PWD/xlsxrichstring.cpp \
-    $$PWD/xlsxconditionalformatting.cpp \
     $$PWD/xlsxcolor.cpp \
     $$PWD/xlsxnumformatparser.cpp \
     $$PWD/xlsxdrawinganchor.cpp \
@@ -81,4 +80,3 @@ SOURCES += $$PWD/xlsxdocpropscore.cpp \
     $$PWD/xlsxchart.cpp \
     $$PWD/xlsxsimpleooxmlfile.cpp \
     $$PWD/xlsxcellformula.cpp
-
