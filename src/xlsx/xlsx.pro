@@ -32,7 +32,7 @@ Q_XLSX_HEADERS = \
 
 target.path = $$[QT_INSTALL_LIBS]
 header.path = $$[QT_INSTALL_HEADERS]/QtXlsx
-header.files = $$Q_XLSX_HEADERS
+header.files = $$Q_XLSX_HEADERS QtXlsx
 
 modules.path = $$[QT_HOST_DATA]/mkspecs/modules
 modules.files = qt_lib_xlsx.pri
